@@ -1,0 +1,14 @@
+def sum_of_squares_distinct_counts(nums):
+    n = len(nums)
+    result = 0
+    for i in range(n):
+        count = {}
+        for j in range(i, n):
+            count[nums[j]] = count.get(nums[j], 0) + 1
+            result += sum(val ** 2 for val in count.values())
+    return result
+
+# Example
+nums = [1, 2, 1]
+output = sum_of_squares_distinct_counts(nums)
+print(output)  # Output: 15
