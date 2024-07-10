@@ -1,0 +1,24 @@
+def rob_linear(houses):
+    n = len(houses)
+    if n == 0:
+        return 0
+    if n == 1:
+        return houses[0]
+    dp = [0] * n
+    dp[0] = houses[0]
+    dp[1] = max(houses[0], houses[1])
+    for i in range(2, n):
+        dp[i] = max(dp[i-1], dp[i-2] + houses[i])
+    return dp[-1]
+def rob(nums):
+    if not nums:
+        return 0
+    if len(nums) == 1:
+        return nums[0]
+    max_rob1 = rob_linear(nums[:-1])
+    max_rob2 = rob_linear(nums[1:])
+    return max(max_rob1, max_rob2)
+nums1 = [2, 3, 2]
+print(rob(nums1))  # Output: 3
+nums2 = [1, 2, 3, 1]
+print(rob(nums2))  # Output: 4
